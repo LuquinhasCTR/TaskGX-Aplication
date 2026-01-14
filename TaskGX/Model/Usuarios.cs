@@ -11,7 +11,7 @@ namespace TaskGX.Model
     /// </summary>
     public class Usuarios
     {
-        public int ID { get; private set; }
+        public int ID { get; internal set; }
         public string Nome { get; set; }
         public string Email { get; set; }
         public string SenhaHash { get; set; }
