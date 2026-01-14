@@ -31,7 +31,13 @@ namespace TaskGX.View
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
-
+        private void TextBoxSenha_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is LoginViewModel vm)
+            {
+                vm.SenhaTexto = TextBoxSenha.Password;
+            }
+        }
         private void BotaoMinimizar_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;    
