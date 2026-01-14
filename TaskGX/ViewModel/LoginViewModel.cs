@@ -11,7 +11,7 @@ namespace TaskGX.ViewModel
     public class LoginViewModel
     {
         public string Nome { get; set; }
-        public string SenhaHash { get; set; }
+        public string SenhaTexto { get; set; }
         public ICommand ComandoLogin {get; }
 
         public LoginViewModel()
