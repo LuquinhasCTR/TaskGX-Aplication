@@ -109,6 +109,7 @@
     </ApplicationDefinition>
     <Compile Include="Dados\LigacaoDB.cs" />
     <Compile Include="Ferramentas\RelayCommand.cs" />
+    <Compile Include="Servicos\ServicoAutenticacao.cs" />
     <Compile Include="Model\Usuarios.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="View\LoginView.xaml.cs">
