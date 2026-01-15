@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TaskGX.ViewModel;
+using TaskGX.View;
 
 namespace TaskGX.View
 {
@@ -20,10 +12,38 @@ namespace TaskGX.View
     /// </summary>
     public partial class LoginView : Window
     {
+        private readonly LoginViewModel _viewModel;
+
         public LoginView()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel();
+
+            _viewModel = new LoginViewModel();
+            _viewModel.PropertyChanged += ViewModel_PropertyChanged;
+
+            DataContext = _viewModel;
+        }
+
+        // 🔔 Escuta mudanças no ViewModel
+        private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(LoginViewModel.LoginSucesso))
+            {
+                if (_viewModel.LoginSucesso)
+                {
+                    // ✅ Abre a janela principal
+                    var mainWindow = new MainWindow();
+                    
+                    // Define a MainWindow como janela principal antes de fechar a LoginView
+                    // Isso evita que a aplicação encerre quando a LoginView fecha
+                    Application.Current.MainWindow = mainWindow;
+                    
+                    mainWindow.Show();
+
+                    // ✅ Fecha a janela de login
+                    Close();
+                }
+            }
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -31,6 +51,7 @@ namespace TaskGX.View
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
         private void TextBoxSenha_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (DataContext is LoginViewModel vm)
@@ -38,16 +59,15 @@ namespace TaskGX.View
                 vm.SenhaTexto = TextBoxSenha.Password;
             }
         }
+        
         private void BotaoMinimizar_Click(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Minimized;    
+            WindowState = WindowState.Minimized;
         }
+
         private void BotaoFechar_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-
-
     }
-        
 }

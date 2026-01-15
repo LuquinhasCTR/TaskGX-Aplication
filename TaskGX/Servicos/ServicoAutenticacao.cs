@@ -19,10 +19,10 @@ namespace TaskGX.Servicos
         /// <summary>
         /// Valida as credenciais do utilizador.
         /// </summary>
-        public bool Login(string email, string senhaTexto)
+        public bool Login(string nome, string senhaTexto)
         {
             // 1️⃣ Buscar utilizador pelo email
-            Usuarios usuario = _usuarioRepository.ObterPorEmail(email);
+            Usuarios usuario = _usuarioRepository.ObterPorNome(nome);
 
             if (usuario == null)
                 return false;
@@ -31,7 +31,7 @@ namespace TaskGX.Servicos
             string senhaHash = GerarSha256(senhaTexto);
 
             // 3️⃣ Comparar com a base de dados
-            if (usuario.SenhaHash != senhaHash)
+            if (usuario.Senha != senhaHash)
                 return false;
 
             // 4️⃣ Verificar se está ativo

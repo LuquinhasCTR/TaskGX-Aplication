@@ -14,7 +14,7 @@ namespace TaskGX.Model
         public int ID { get; internal set; }
         public string Nome { get; set; }
         public string Email { get; set; }
-        public string SenhaHash { get; set; }
+        public string Senha { get; set; }
         public string Avatar { get; set; }
         public bool Ativo { get; set; }
         public bool EmailVerificado { get; set; }   
@@ -22,11 +22,11 @@ namespace TaskGX.Model
         public DateTime? CriadoEm { get; private set; }
         public DateTime? DataAtualizacao { get; set; }
         public DateTime? CodigoVerificacaoExpiracao { get; set; }
-        public Usuarios(string nome, string email, string senhaHash)
+        public Usuarios(string nome, string email, string senha)
         {
             Nome = nome;
             Email = email;
-            SenhaHash = senhaHash;
+            Senha = senha;
 
             Ativo = true;
             EmailVerificado = false;

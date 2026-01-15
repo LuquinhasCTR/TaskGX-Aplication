@@ -152,6 +152,7 @@
 
                     <TextBox x:Name="TextBoxUsername"
                              FontSize="13"
+                             Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}"
                              FontWeight="Normal"
                              FontFamily="Montserrat"
                              Foreground="White"
@@ -201,13 +202,16 @@
                     <Button x:Name="BotaoLogin"
                             BorderThickness="0"
                             Content="Login"
+                           
+                            Command="{Binding DataContext.ComandoLogin,
+                          RelativeSource={RelativeSource AncestorType=Window}}"
                             FontSize="12"
                             FontWeight="bold"
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Grid.Column="2"
-                            Margin="0,50,0,0"
-                            Click="BotaoFechar_Click">
+                            
+                            Margin="0,50,0,0">
 
                         <Button.Style>
                             <Style TargetType="Button">

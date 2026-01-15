@@ -1,29 +1,32 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Configuration;
 using TaskGX.Model;
 
 namespace TaskGX.Dados
 {
     public class RepositorioUsuario
     {
-        public Usuarios ObterPorEmail(string email)
+        public Usuarios ObterPorNome(string nome)
         {
-            using (var conexao = new MySqlConnection(LigacaoDB.GetConnectionString()))
+            using (var conexao = new MySqlConnection(
+                ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString))
             {
                 conexao.Open();
 
                 string sql = @"
                     SELECT 
-                        id, 
-                        email, 
-                        senha_hash, 
+                        id,
+                        nome,
+                        email,
+                        senha,
                         ativo
                     FROM usuarios
-                    WHERE email = @email
+                    WHERE nome = @Nome
                     LIMIT 1";
 
                 using (var comando = new MySqlCommand(sql, conexao))
                 {
-                    comando.Parameters.AddWithValue("@email", email);
+                    comando.Parameters.AddWithValue("@Nome", nome);
 
                     using (var leitor = comando.ExecuteReader())
                     {
@@ -33,8 +36,9 @@ namespace TaskGX.Dados
                         return new Usuarios
                         {
                             ID = leitor.GetInt32("id"),
+                            Nome = leitor.GetString("nome"),
                             Email = leitor.GetString("email"),
-                            SenhaHash = leitor.GetString("senha_hash"),
+                            Senha = leitor.GetString("senha"),
                             Ativo = leitor.GetInt32("ativo") == 1
                         };
                     }
