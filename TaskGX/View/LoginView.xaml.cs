@@ -24,6 +24,12 @@ namespace TaskGX.View
             DataContext = _viewModel;
         }
 
+        private void CriarConta_Click(object sender, RoutedEventArgs e)
+        {
+            CriarContaView window = new CriarContaView();
+            window.Show();
+        }
+
         // 🔔 Escuta mudanças no ViewModel
         private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {

@@ -112,10 +112,18 @@
     <Compile Include="Ferramentas\RelayCommand.cs" />
     <Compile Include="Servicos\ServicoAutenticacao.cs" />
     <Compile Include="Model\Usuarios.cs" />
+    <Compile Include="ViewModel\CriarContaViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="View\CriarContaView.xaml.cs">
+      <DependentUpon>CriarContaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\CriarContaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

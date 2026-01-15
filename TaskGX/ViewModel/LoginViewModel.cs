@@ -6,6 +6,7 @@ using TaskGX.Servicos;
 using TaskGX.View;
 using TaskGX.Dados;
 
+
 namespace TaskGX.ViewModel
 {
     public class LoginViewModel : INotifyPropertyChanged
@@ -16,8 +17,15 @@ namespace TaskGX.ViewModel
         {
             _servicoAuth = new ServicoAutenticacao();
             ComandoLogin = new RelayCommand(Login);
+            CriarContaCommand = new RelayCommand(AbrirTelaCriarConta);
+        }
+        private void AbrirTelaCriarConta()
+        {
+            new TaskGX.View.CriarContaView().Show();
         }
 
+
+        public ICommand CriarContaCommand { get; }
         public string Nome { get; set; }
         public string SenhaTexto { get; set; }
 
