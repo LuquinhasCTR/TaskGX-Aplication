@@ -24,6 +24,12 @@ namespace TaskGX.View
             DataContext = _viewModel;
         }
 
+        private void RecuperarConta_Click(object sender, RoutedEventArgs e) 
+        { 
+            RecuperarContaView window = new RecuperarContaView();
+            window.Show();
+        }
+
         private void CriarConta_Click(object sender, RoutedEventArgs e)
         {
             CriarContaView window = new CriarContaView();

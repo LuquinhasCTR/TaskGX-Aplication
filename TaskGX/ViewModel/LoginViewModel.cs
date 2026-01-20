@@ -18,12 +18,19 @@ namespace TaskGX.ViewModel
             _servicoAuth = new ServicoAutenticacao();
             ComandoLogin = new RelayCommand(Login);
             CriarContaCommand = new RelayCommand(AbrirTelaCriarConta);
+            RecuperarContaCommand = new RelayCommand(AbrirTelaCriarRecuperar);
         }
+        private void AbrirTelaCriarRecuperar()
+        {
+            new TaskGX.View.RecuperarContaView().Show();
+        }
+
         private void AbrirTelaCriarConta()
         {
             new TaskGX.View.CriarContaView().Show();
         }
 
+        public ICommand RecuperarContaCommand { get; }
 
         public ICommand CriarContaCommand { get; }
         public string Nome { get; set; }

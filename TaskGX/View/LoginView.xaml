@@ -247,13 +247,22 @@
                                    FontWeight="bold"
                                    FontFamily="Montserrat"/>
 
-                        <TextBlock Text="Recuperar conta."
+                        <TextBlock 
                                    Foreground="#222"
                                    FontSize="14"
                                    FontWeight="bold"
                                    FontFamily="Montserrat"
                                    Margin="8,0,0,0"
-                                   Cursor="Hand"/>
+                                   Cursor="Hand">            
+                        <Hyperlink
+                                   Command="{Binding RecuperarContaCommand}"
+                                   Foreground="#222"
+                                   TextDecorations="{x:Null}"
+                                   Cursor="Hand">
+                                   Recuperar Conta.
+                      
+                        </Hyperlink>
+                        </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
