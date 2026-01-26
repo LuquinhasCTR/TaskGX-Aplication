@@ -24,6 +24,7 @@ namespace TaskGX.View
         public MainWindow()
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
         }
     }
 }

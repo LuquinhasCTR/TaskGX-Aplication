@@ -18,6 +18,7 @@ namespace TaskGX.View
         {
             InitializeComponent();
 
+
             _viewModel = new LoginViewModel();
             _viewModel.PropertyChanged += ViewModel_PropertyChanged;
 
