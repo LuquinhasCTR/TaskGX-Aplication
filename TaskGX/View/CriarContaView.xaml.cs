@@ -23,5 +23,14 @@ namespace TaskGX.View
         {
             InitializeComponent();
         }
+        private void BotaoMinimizar_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void BotaoFechar_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

@@ -175,12 +175,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Imagens\ChaveIcone.png" />
     <Resource Include="Imagens\FundoTelaLogin.png" />
     <Resource Include="Imagens\Icone.png" />
     <Resource Include="Imagens\UserIcone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagens\EmailIcone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagens\GoogleIcone.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

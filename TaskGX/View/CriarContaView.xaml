@@ -36,37 +36,145 @@
                 </LinearGradientBrush>
             </Border.Background>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+            <StackPanel Width="250"
+            Grid.Row="1"
+            Orientation="Vertical"
+            Margin="50,10,0,0">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="5"/>
-                </Grid.ColumnDefinitions>
+                <Image Source="/Imagens/Icone.png" Width="100" Height="100"/>
 
-                <TextBlock Text="Login"
-                           Foreground="White"
-                           FontSize="10"
-                           FontFamily="MontSerrat"
-                           VerticalAlignment="Center"
-                           Margin="10,0,0,0"/>
+                <TextBlock Text="TaskGX"
+               Foreground="Black"
+               FontSize="25"
+               FontWeight="Bold"
+               FontFamily="Montserrat"
+               HorizontalAlignment="Center"/>
 
-                <Button x:Name="BotaoMinimizar"
-                        BorderThickness="0"
-                        Content="−"
-                        FontSize="16"
-                        FontFamily="Montserrat"
-                        Cursor="Hand"
-                        Grid.Column="1">
+                <TextBlock Text="Crie sua conta no TaskGX."
+               Foreground="Black"
+               FontSize="15"
+               FontWeight="Bold"
+               FontFamily="Montserrat"
+               TextAlignment="Center"
+               Margin="0,5,0,0"/>
+
+                <!-- NOME -->
+                <TextBlock Text="Nome:"
+               Foreground="Black"
+               FontSize="14"
+               FontWeight="Bold"
+               FontFamily="Montserrat"
+               Margin="0,20,0,0"/>
+
+                <TextBox x:Name="TextBoxNome"
+             FontSize="13"
+             FontFamily="Montserrat"
+             Foreground="White"
+             CaretBrush="LightGray"
+             BorderBrush="DarkGray"
+             BorderThickness="0,0,0,1"
+             Height="28"
+             Padding="20,0,0,0"
+             Margin="0,5,0,0">
+
+                    <TextBox.Background>
+                        <ImageBrush ImageSource="/Imagens/UserIcone.png"
+                        Stretch="None"
+                        AlignmentX="Left"/>
+                    </TextBox.Background>
+                </TextBox>
+
+                <!-- EMAIL -->
+                <TextBlock Text="Email:"
+               Foreground="Black"
+               FontSize="14"
+               FontWeight="Bold"
+               FontFamily="Montserrat"
+               Margin="0,15,0,0"/>
+
+                <TextBox x:Name="TextBoxEmail"
+             FontSize="13"
+             FontFamily="Montserrat"
+             Foreground="White"
+             CaretBrush="LightGray"
+             BorderBrush="DarkGray"
+             BorderThickness="0,0,0,1"
+             Height="28"
+             Padding="20,0,0,0"
+             Margin="0,5,0,0">
+
+                    <TextBox.Background>
+                        <ImageBrush ImageSource="/Imagens/EmailIcone.png"
+                        Stretch="None"
+                        AlignmentX="Left"/>
+                    </TextBox.Background>
+                </TextBox>
+
+                <!-- SENHA -->
+                <TextBlock Text="Senha:"
+               Foreground="Black"
+               FontSize="14"
+               FontWeight="Bold"
+               FontFamily="Montserrat"
+               Margin="0,15,0,0"/>
+
+                <PasswordBox x:Name="PasswordBoxSenha"
+                 FontSize="13"
+                 FontFamily="Montserrat"
+                 Foreground="White"
+                 CaretBrush="LightGray"
+                 BorderBrush="DarkGray"
+                 BorderThickness="0,0,0,1"
+                 Height="28"
+                 Padding="20,0,0,0"
+                 Margin="0,5,0,0">
+
+                    <PasswordBox.Background>
+                        <ImageBrush ImageSource="/Imagens/ChaveIcone.png"
+                        Stretch="None"
+                        AlignmentX="Left"/>
+                    </PasswordBox.Background>
+                </PasswordBox>
+
+                <!-- CONFIRMAR SENHA -->
+                <TextBlock Text="Confirmar Senha:"
+               Foreground="Black"
+               FontSize="14"
+               FontWeight="Bold"
+               FontFamily="Montserrat"
+               Margin="0,15,0,0"/>
+
+                <PasswordBox x:Name="PasswordBoxConfirmarSenha"
+                 FontSize="13"
+                 FontFamily="Montserrat"
+                 Foreground="White"
+                 CaretBrush="LightGray"
+                 BorderBrush="DarkGray"
+                 BorderThickness="0,0,0,1"
+                 Height="28"
+                 Padding="20,0,0,0"
+                 Margin="0,5,0,0">
+
+                    <PasswordBox.Background>
+                        <ImageBrush ImageSource="/Imagens/ChaveIcone.png"
+                        Stretch="None"
+                        AlignmentX="Left"/>
+                    </PasswordBox.Background>
+                </PasswordBox>
+
+                <!-- BOTÃO -->
+                <Button x:Name="BotaoCriarConta"
+            Content="Criar Conta"
+            FontSize="12"
+            FontWeight="Bold"
+            FontFamily="Montserrat"
+            Cursor="Hand"
+            BorderThickness="0"
+            Margin="0,30,0,0">
 
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#696969"/>
+                            <Setter Property="Background" Value="#898989"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#797979"/>
@@ -77,203 +185,85 @@
 
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border Width="18" Height="18"
-                                    CornerRadius="1"
-                                    Background="{TemplateBinding Background}">
+                            <Border Width="150"
+                        Height="40"
+                        CornerRadius="20"
+                        Background="{TemplateBinding Background}">
                                 <ContentPresenter HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"/>
+                                      VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
 
-                <Button x:Name="BotaoFechar"
-                        BorderThickness="0"
-                        Content="X"
-                        FontSize="12"
-                        FontFamily="Montserrat"
-                        Cursor="Hand"
-                        Grid.Column="2">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#FF4433"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#FF6655"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                    <Button.Template>
+                <!-- VOLTAR LOGIN -->
+                <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                Margin="0,20,0,0">
 
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="18" Height="18"
-                                    CornerRadius="1"
-                                    Background="{TemplateBinding Background}">
-                                <ContentPresenter HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                    <TextBlock Text="Já tem uma conta?"
+                   Foreground="Black"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   FontFamily="Montserrat"/>
 
-                <StackPanel Width="250"
-                            Grid.Row="2"
-                            Orientation="Vertical"
-                            Margin="50,10,0,0">
-                    <Image Source="/Imagens/Icone.png" Width="100" Height="100"/>
-
-                    <TextBlock Text="TaskGX"
-                               Foreground="Black"
-                               FontSize="25"
-                               FontWeight="bold"
-                               FontFamily="Montserrat"
-                               HorizontalAlignment="Center"/>
-
-                    <TextBlock Text="Bem-vindo ao Task GX."
-                               Foreground="black"
-                               FontSize="15"
-                               FontWeight="bold"
-                               FontFamily="Montserrat"
-                               TextAlignment="center"
-                               TextWrapping="Wrap"
-                               Margin="0,5,0,0"/>
-
-                    <TextBlock Text="Username:"
-                               Foreground="black"
-                               FontSize="14"
-                               FontWeight="bold"
-                               FontFamily="Montserrat"
-                               Margin="0,20,0,0"/>
-
-                    <TextBox x:Name="TextBoxUsername"
-                             FontSize="13"
-                             Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}"
-                             FontWeight="Normal"
-                             FontFamily="Montserrat"
-                             Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
-                             BorderThickness="0,0,0,1"
-                             Height="28"
-                             VerticalContentAlignment="Center"
-                             Margin=" 0,5,0,0"
-                             Padding="20,0,0,0">
-
-                        <TextBox.Background>
-                            <ImageBrush ImageSource = "/Imagens/UserIcone.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/>
-                        </TextBox.Background>
-                    </TextBox>
-
-                    <TextBlock Text="Senha:"
-                               Foreground="black"
-                               FontSize="14"
-                               FontWeight="bold"
-                               FontFamily="Montserrat"
-                               Margin="0,15,0,0"/>
-
-                    <PasswordBox x:Name="TextBoxSenha"
-                             FontSize="13"
-                             FontWeight="Normal"
-                             FontFamily="Montserrat"
-                             Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
-                             BorderThickness="0,0,0,1"
-                             Height="28"
-                             VerticalContentAlignment="Center"
-                             Margin=" 0,5,0,0"
-                             Padding="20,0,0,0">
-                        <PasswordBox.Background>
-
-                            <ImageBrush ImageSource = "/Imagens/ChaveIcone.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/>
-                        </PasswordBox.Background>
-                    </PasswordBox>
-
-                    <TextBlock Text="Senha:"
-                           Foreground="black"
-                           FontSize="14"
-                           FontWeight="bold"
-                           FontFamily="Montserrat"
-                           Margin="0,15,0,0"/>
-
-                    <PasswordBox x:Name="TextBoxEmail"
-                           FontSize="13"
-                           FontWeight="Normal"
-                           FontFamily="Montserrat"
-                           Foreground="White"
-                           CaretBrush="LightGray"
-                           BorderBrush="DarkGray"
-                           BorderThickness="0,0,0,1"
-                           Height="28"
-                           VerticalContentAlignment="Center"
-                           Margin=" 0,5,0,0"
-                           Padding="20,0,0,0">    
-                    <PasswordBox.Background>
-
-                           <ImageBrush ImageSource = "/Imagens/ChaveIcone.png"
-                            Stretch="None"
-                            AlignmentX="Left"/>
-                    </PasswordBox.Background>
-                    </PasswordBox>
-
-                    <Button x:Name="BotaoCriarConta"
-                            BorderThickness="0"
-                            Content="Criar Conta"
-                            IsDefault="true"
-                            FontSize="12"
-                            FontWeight="bold"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            Grid.Column="2"
-                            
-                            Margin="0,70,0,0">
-
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#898989"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#797979"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="150" Height="40"
-                                        CornerRadius="20"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Center"
-                               Margin="0,20,0,0">
-                        <TextBlock Text="Já tem uma conta?"
-                                   Foreground="black"
-                                   FontSize="14"
-                                   FontWeight="bold"
-                                   FontFamily="Montserrat"/>
-
-                        <TextBlock Text="Voltar para Login."
-                                   Foreground="#222"
-                                   FontSize="14"
-                                   FontWeight="bold"
-                                   FontFamily="Montserrat"
-                                   Margin="8,0,0,0"
-                                   Cursor="Hand"/>
-                    </StackPanel>
+                    <TextBlock Text="Voltar para Login."
+                   Foreground="#222"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   FontFamily="Montserrat"
+                   Margin="8,0,0,0"
+                   Cursor="Hand"/>
+                    
                 </StackPanel>
-            </Grid>
+                <!-- LOGIN COM GOOGLE -->
+                <Button x:Name="BotaoLoginGoogle"
+                                Cursor="Hand"
+                                BorderThickness="0"
+                                Margin="0,15,0,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="GoogleBorder"
+                                    Width="200"
+                                    Height="40"
+                                    CornerRadius="20"
+                                    Background="#FFFFFF"
+                                    BorderBrush="#DDDDDD"
+                                    BorderThickness="1">
+
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"> 
+
+                                    <Image Source="/Imagens/GoogleIcone.png"
+                                           Width="18"
+                                           Height="18"
+                                           Margin="0,0,10,0"
+                                           VerticalAlignment="Center"/>
+
+                                    <TextBlock Text="Entrar com Google"
+                                               Foreground="#444"
+                                               FontSize="13"
+                                               FontWeight="Bold"
+                                               FontFamily="Montserrat"
+                                               VerticalAlignment="Center"/>    
+                                </StackPanel>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="GoogleBorder"
+                                            Property="Background"
+                                            Value="#F2F2F2"/>   
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+
         </Border>
     </Border>
 </Window>
