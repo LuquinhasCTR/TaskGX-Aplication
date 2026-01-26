@@ -32,5 +32,15 @@ namespace TaskGX.View
         {
             Application.Current.Shutdown();
         }
+
+        private void BotaoLoginGoogle_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BotaoCriarConta_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
