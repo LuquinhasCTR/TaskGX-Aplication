@@ -64,9 +64,9 @@ namespace TaskGX.Servicos
         // =========================
         // LOGIN
         // =========================
-        public bool Login(string nome, string senhaDigitada)
+        public bool Login(string email, string senhaDigitada)
         {
-            Usuarios usuario = _usuarioRepository.ObterPorNome(nome);
+            Usuarios usuario = _usuarioRepository.ObterPorEmail(email);
 
             if (usuario == null)
                 return false;

@@ -146,7 +146,7 @@
                                TextWrapping="Wrap"
                                Margin="0,5,0,0"/>
                     
-                    <TextBlock Text="Username:"
+                    <TextBlock Text="Email:"
                                Foreground="black"
                                FontSize="14"
                                FontWeight="bold"
@@ -155,7 +155,7 @@
 
                     <TextBox x:Name="TextBoxUsername"
                              FontSize="13"
-                             Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                              FontWeight="Normal"
                              FontFamily="Montserrat"
                              Foreground="White"

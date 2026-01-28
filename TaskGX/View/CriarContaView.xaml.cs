@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using TaskGX.Dados;
+using TaskGX.Ferramentas;
 using TaskGX.Model;
 
 namespace TaskGX.View
@@ -61,7 +62,7 @@ namespace TaskGX.View
                     return;
                 }
 
-                var usuario = new Usuarios(nome, email, GerarSha256(senha));
+                var usuario = new Usuarios(nome, email, AjudaHash.GerarHashSenha(senha));
                 // O construtor já define Ativo=true e CriadoEm, ajusta se necessário.
 
                 repo.Inserir(usuario);
@@ -73,20 +74,6 @@ namespace TaskGX.View
             {
                 // Em desenvolvimento mostre a exceção; em produção logue-a
                 MessageBox.Show("Erro ao criar conta:\n" + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private string GerarSha256(string texto)
-        {
-            using (SHA256 sha = SHA256.Create())
-            {
-                byte[] bytes = Encoding.UTF8.GetBytes(texto);
-                byte[] hash = sha.ComputeHash(bytes);
-
-                return BitConverter
-                    .ToString(hash)
-                    .Replace("-", "")
-                    .ToLowerInvariant();
             }
         }
     }

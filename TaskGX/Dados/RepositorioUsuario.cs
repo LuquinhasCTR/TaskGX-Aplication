@@ -8,8 +8,8 @@ namespace TaskGX.Dados
     {
         private string GetConn() => LigacaoDB.GetConnectionString();
 
-        // Recupera usuário por nome
-        public Usuarios ObterPorNome(string nome)
+        // Recupera usuário por email
+        public Usuarios ObterPorEmail(string email)
         {
             using (var conexao = new MySqlConnection(GetConn()))
             {
@@ -29,12 +29,12 @@ namespace TaskGX.Dados
                         Criado_em,
                         DataAtualizacao
                     FROM Usuarios
-                    WHERE Nome = @Nome
+                    WHERE Email = @Email
                     LIMIT 1;";
 
                 using (var comando = new MySqlCommand(sql, conexao))
                 {
-                    comando.Parameters.AddWithValue("@Nome", nome);
+                    comando.Parameters.AddWithValue("@Email", email);
 
                     using (var leitor = comando.ExecuteReader())
                     {

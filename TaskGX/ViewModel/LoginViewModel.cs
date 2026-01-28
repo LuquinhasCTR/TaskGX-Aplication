@@ -33,7 +33,7 @@ namespace TaskGX.ViewModel
         public ICommand RecuperarContaCommand { get; }
 
         public ICommand CriarContaCommand { get; }
-        public string Nome { get; set; }
+        public string Email { get; set; }
         public string SenhaTexto { get; set; }
 
         private bool _loginSucesso;
@@ -51,11 +51,11 @@ namespace TaskGX.ViewModel
 
         private void Login()
         {
-            if (string.IsNullOrWhiteSpace(Nome) ||
+            if (string.IsNullOrWhiteSpace(Email) ||
                 string.IsNullOrWhiteSpace(SenhaTexto))
                 return;
 
-            bool sucesso = _servicoAuth.Login(Nome, SenhaTexto);
+            bool sucesso = _servicoAuth.Login(Email, SenhaTexto);
 
             if (!sucesso)
             {
