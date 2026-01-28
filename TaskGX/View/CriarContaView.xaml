@@ -150,6 +150,7 @@
                Margin="0,20,0,0"/>
 
                     <TextBox x:Name="TextBoxNome"
+                             Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontFamily="Montserrat"
                              Foreground="White"
@@ -177,6 +178,7 @@
                Margin="0,15,0,0"/>
 
                     <TextBox x:Name="TextBoxEmail"
+                             Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontFamily="Montserrat"
                              Foreground="White"

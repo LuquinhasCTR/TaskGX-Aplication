@@ -1,28 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using TaskGX.Dados;
+using TaskGX.Model;
 
 namespace TaskGX.View
 {
-    /// <summary>
-    /// Lógica interna para CriarContaView.xaml
-    /// </summary>
     public partial class CriarContaView : Window
     {
         public CriarContaView()
         {
             InitializeComponent();
         }
+
         private void BotaoMinimizar_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -40,7 +31,63 @@ namespace TaskGX.View
 
         private void BotaoCriarConta_Click(object sender, RoutedEventArgs e)
         {
+            string nome = TextBoxNome.Text?.Trim();
+            string email = TextBoxEmail.Text?.Trim();
+            string senha = PasswordBoxSenha.Password;
+            string confirmar = PasswordBoxConfirmarSenha.Password;
 
+            if (string.IsNullOrEmpty(nome) ||
+                string.IsNullOrEmpty(email) ||
+                string.IsNullOrEmpty(senha) ||
+                string.IsNullOrEmpty(confirmar))
+            {
+                MessageBox.Show("Por favor preencha todos os campos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (senha != confirmar)
+            {
+                MessageBox.Show("As senhas não coincidem.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                var repo = new RepositorioUsuario();
+
+                if (repo.ExisteEmail(email))
+                {
+                    MessageBox.Show("Este email já está registado.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var usuario = new Usuarios(nome, email, GerarSha256(senha));
+                // O construtor já define Ativo=true e CriadoEm, ajusta se necessário.
+
+                repo.Inserir(usuario);
+
+                MessageBox.Show("Conta criada com sucesso!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                // Em desenvolvimento mostre a exceção; em produção logue-a
+                MessageBox.Show("Erro ao criar conta:\n" + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private string GerarSha256(string texto)
+        {
+            using (SHA256 sha = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(texto);
+                byte[] hash = sha.ComputeHash(bytes);
+
+                return BitConverter
+                    .ToString(hash)
+                    .Replace("-", "")
+                    .ToLowerInvariant();
+            }
         }
     }
 }
