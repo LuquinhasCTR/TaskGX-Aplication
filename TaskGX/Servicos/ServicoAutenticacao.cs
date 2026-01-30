@@ -23,42 +23,78 @@ namespace TaskGX.Servicos
         // =========================
         public bool CriarConta(string nome, string email, string senha, string confirmarSenha)
         {
+            string _;
+            return CriarConta(nome, email, senha, confirmarSenha, out _);
+        }
+
+        public bool CriarConta(string nome, string email, string senha, string confirmarSenha, out string mensagemErro)
+        {
+            mensagemErro = string.Empty;
+
+            nome = nome?.Trim();
+            email = email?.Trim();
+            senha = senha?.Trim();
+            confirmarSenha = confirmarSenha?.Trim();
+
             // Campos obrigatórios
             if (string.IsNullOrWhiteSpace(nome) ||
                 string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(senha) ||
                 string.IsNullOrWhiteSpace(confirmarSenha))
+            {
+                mensagemErro = "Preencha todos os campos.";
                 return false;
+            }
 
             // Email simples
             if (!email.Contains("@"))
+            {
+                mensagemErro = "Email inválido.";
                 return false;
+            }
 
             // Senhas iguais
             if (senha != confirmarSenha)
+            {
+                mensagemErro = "As senhas não coincidem.";
                 return false;
+            }
 
             // Senha forte
             if (!SenhaValida(senha))
-                return false;
-
-            // Verificar se já existe
-            if (_usuarioRepository.ExisteEmail(email))
-                return false;
-
-            // 🔐 Gerar hash seguro
-            string senhaHash = AjudaHash.GerarHashSenha(senha);
-
-            Usuarios novoUsuario = new Usuarios
             {
-                Nome = nome,
-                Email = email,
-                Senha = senhaHash,
-                Ativo = true
-            };
+                mensagemErro = "Senha fraca. Use 8+ caracteres, ao menos 1 maiúscula e 1 especial.";
+                return false;
+            }
 
-            _usuarioRepository.Inserir(novoUsuario);
-            return true;
+            try
+            {
+                // Verificar se já existe
+                if (_usuarioRepository.ExisteEmail(email))
+                {
+                    mensagemErro = "Este email já está cadastrado.";
+                    return false;
+                }
+
+                // 🔐 Gerar hash seguro
+                string senhaHash = AjudaHash.GerarHashSenha(senha);
+
+                Usuarios novoUsuario = new Usuarios
+                {
+                    Nome = nome,
+                    Email = email,
+                    Senha = senhaHash,
+                    Ativo = true
+                };
+
+                _usuarioRepository.Inserir(novoUsuario);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                mensagemErro = "Erro ao criar conta: " + ex.Message;
+                return false;
+            }
         }
 
         // =========================
@@ -66,7 +102,20 @@ namespace TaskGX.Servicos
         // =========================
         public bool Login(string email, string senhaDigitada)
         {
-            Usuarios usuario = _usuarioRepository.ObterPorEmail(email);
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senhaDigitada))
+                return false;
+
+            email = email.Trim();
+
+            Usuarios usuario;
+            try
+            {
+                usuario = _usuarioRepository.ObterPorEmail(email);
+            }
+            catch
+            {
+                return false;
+            }
 
             if (usuario == null)
                 return false;
@@ -94,7 +143,7 @@ namespace TaskGX.Servicos
                 return false;
 
             // Pelo menos um caractere especial
-            if (!Regex.IsMatch(senha, @"[!@#$%^&*(),.?""':{}|<>]"))
+            if (!Regex.IsMatch(senha, @"[!@#$%^&*(),.?""':{}|<>_]"))
                 return false;
 
             return true;
