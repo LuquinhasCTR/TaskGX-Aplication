@@ -77,13 +77,14 @@ namespace TaskGX.ViewModel
                 Nome,
                 Email,
                 Senha,
-                ConfirmarSenha
+                ConfirmarSenha,
+                out string mensagemErro
             );
 
             if (!sucesso)
             {
                 SucessoCriar = false;
-                MensagemErro = "Erro ao criar conta. Verifique os dados.";
+                MensagemErro = mensagemErro;
                 return;
             }
 

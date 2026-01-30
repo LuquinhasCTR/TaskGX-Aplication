@@ -19,7 +19,23 @@ namespace TaskGX.Ferramentas
 
         public static bool VerificarSenha(string senhaDigitada, string hashArmazenado)
         {
-            return BCrypt.Net.BCrypt.Verify(senhaDigitada, hashArmazenado);
+            if (string.IsNullOrWhiteSpace(senhaDigitada) || string.IsNullOrEmpty(hashArmazenado))
+                return false;
+
+            // Suporte a hashes BCrypt e senha em texto puro (legado)
+            if (hashArmazenado.StartsWith("$2"))
+            {
+                try
+                {
+                    return BCrypt.Net.BCrypt.Verify(senhaDigitada, hashArmazenado);
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            return senhaDigitada == hashArmazenado;
         }
     }
 }
